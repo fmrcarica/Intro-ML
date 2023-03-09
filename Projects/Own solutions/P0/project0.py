@@ -7,7 +7,8 @@ df_train = pd.read_csv('/home/otps3141/Documents/Dokumente/ETH QE/Semester 2/Int
 ### exclude first column
 # print(df_train.iloc[:,1:])
 
-### All training data
+
+### All outcome data
 y = df_train['y']
 # print(y)
 
@@ -20,12 +21,33 @@ y_pred = df_train.iloc[:,2:].mean(axis=1)
 
 ### Define train matrix
 X = df_train.iloc[:,2:]
-print(X)
+# print(X.shape[1])
 
 ### Closed form solution
 w_star = np.linalg.inv(X.T@X)@(X.T@y)
-print(w_star)
+# print(w_star)
 
+### Gradient descent approach
+
+w = np.ones((X.shape[1], 1))
+
+# y_array = y.to_numpy()
+# array = X.dot(w).to_numpy()
+
+error = y - X.dot(w)
+grad = -(X.T).dot(error)[0]
+# print(grad)
+
+
+def grad_desc(X, y, rate = 0.0000001, iterations = 1000):
+    w = np.ones((X.shape[1], 1))
+    for i in range(iterations):
+        errors = y - X.dot(w)[0]
+        grad = -1/10000 * (X.T).dot(errors)[0]
+        w = w - rate*grad
+    return w
+
+print(grad_desc(X, y))
 
 
 
