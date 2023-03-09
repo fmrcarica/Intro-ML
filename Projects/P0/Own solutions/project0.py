@@ -21,7 +21,7 @@ y_pred = df_train.iloc[:,2:].mean(axis=1)
 X = df_train.iloc[:,2:]
 print(X)
 
-
+### Closed form solution
 w_star = np.linalg.inv(X.T@X)@(X.T@y)
 print(w_star)
 
