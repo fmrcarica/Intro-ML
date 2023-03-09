@@ -7,6 +7,7 @@ df_train = pd.read_csv('/home/otps3141/Documents/Dokumente/ETH QE/Semester 2/Int
 ### exclude first column
 # print(df_train.iloc[:,1:])
 
+### All training data
 y = df_train['y']
 # print(y)
 
