@@ -51,9 +51,16 @@ def grad_desc(X, y, rate = 0.01, iterations = 100):
 
 # print(grad_desc(X, y))
 
-y_outcome = X.dot(w_star)
 
-print(y_outcome)
+
+df_test = pd.read_csv('/home/otps3141/Documents/Dokumente/ETH QE/Semester 2/Intro ML/Projects/P0/task0_sl19d1/test.csv')
+
+X_test = df_test.iloc[:,1:]
+
+print(X_test)
+
+y_outcome = X_test.dot(w_star)
+
 
 df_sample = pd.read_csv('/home/otps3141/Documents/Dokumente/ETH QE/Semester 2/Intro ML/Projects/P0/task0_sl19d1/sample.csv')
 
@@ -61,7 +68,7 @@ df_sample['y'] = y_outcome
 
 print(df_sample)
 
-df_sample.to_csv('sample.csv', index=False)
+df_sample.round(5).to_csv('sample.csv', index=False)
 
 
 
