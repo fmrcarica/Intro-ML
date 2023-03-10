@@ -68,7 +68,7 @@ df_sample['y'] = y_outcome
 
 print(df_sample)
 
-df_sample.round(5).to_csv('sample.csv', index=False)
+df_sample.round(3).to_csv('Projects/P0/task0_sl19d1/sample.csv', index=False)
 
 
 
