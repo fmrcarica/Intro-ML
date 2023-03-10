@@ -49,15 +49,39 @@ def grad_desc(X, y, rate = 0.01, iterations = 100):
 
 
 
-### Prediction for test data set
+### Prediction for test data set via closed from
 
-X_test = df_test.iloc[:,1:]
 
-y_predict = X_test.dot(w_star)
+def closed_form():
+    X_test = df_test.iloc[:,1:]
 
-df_sample['y'] = y_predict
+    y_predict = X_test.dot(w_star)
 
-df_sample.round(3).to_csv('Projects/Own solutions/P0/sample.csv', index=False)
+    df_sample['y'] = y_predict
+
+    df_sample.round(10).to_csv('Projects/Own solutions/P0/sample.csv', index=False)
+
+# closed_form()
+
+### Just taking np.mean
+
+def mean():
+
+
+    y_pred_mean = df_test.iloc[:,1:].mean(axis=1)
+
+    df_sample['y'] = y_pred_mean
+
+    df_sample.round(10).to_csv('Projects/Own solutions/P0/sample_mean.csv', index=False)
+
+mean()
+
+
+
+
+
+
+
 
 
 
