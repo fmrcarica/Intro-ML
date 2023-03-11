@@ -36,15 +36,21 @@ w_star = np.linalg.inv(X.T@X)@(X.T@y)
 # print(w_star)
 
 ### Gradient descent approach
-def grad_desc(X, y, rate = 0.01, iterations = 100):
+def grad_desc_mom(X, y, mom, rate = 0.000001, iterations = 1000):
     w = np.ones((X.shape[1], 1))
+    change = 0
     for i in range(iterations):
-        errors = y - X.dot(w)[0]
+        errors = y - X.dot(w)[0] 
         grad = -1/10000 * (X.T).dot(errors)[0]
-        w = w - rate*grad
+        new_change = rate * grad + mom * change
+        w = w - new_change
+        change = new_change
     return w
 
-# print(grad_desc(X, y))
+
+w_gd = grad_desc_mom(X, y, 0)
+
+print(w_gd)
 
 
 
@@ -74,7 +80,22 @@ def mean():
 
     df_sample.round(10).to_csv('Projects/Own solutions/P0/sample_mean.csv', index=False)
 
-mean()
+# mean()
+
+### With gradient descent
+
+def gd():
+
+    X_test = df_test.iloc[:,1:]
+
+    y_predict = X_test.dot(w_gd)
+
+    df_sample['y'] = y_predict
+
+    df_sample.round(10).to_csv('Projects/Own solutions/P0/sample_gd.csv', index=False)
+
+
+# gd()
 
 
 
